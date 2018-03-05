@@ -23,6 +23,12 @@
             } else {
                 removeErrorMessage(document.getElementById('bio'));
             }
+            if (!validateQQ()) {
+                showErrorMessage(document.getElementById('qq'));
+                valid.bio = false;
+            } else {
+                removeErrorMessage(document.getElementById('qq'));
+            }
 
             for (var field in valid) {
                 if (!valid[field]) {
@@ -84,7 +90,15 @@
             }
             return valid;
         }
-
+        //验证qq号长度
+        function validateQQ() {
+            var QQ = document.getElementById('qq');
+            var valid = QQ.value.length >= 5;
+            if(!valid){
+                setErrorMessage(QQ,'QQ号长度不能小于5位');
+            }
+            return valid;
+        }
         //创建错误信息
         function setErrorMessage(el, message) {
             $(el).data('errorMessage', message);
